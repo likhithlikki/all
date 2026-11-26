@@ -5,12 +5,15 @@
 // Your GitHub profile link (don't change unless your username changes)
 const GITHUB_USER = "https://github.com/likhithlikki/";
 
+// Your GitHub Pages address (used to build every "View Website" link)
+const GITHUB_PAGES = "https://likhithlikki.github.io/";
+
 /* ---------- FAVORITES (always pinned, on every device) ----------
    Write the repo name of any project you want pinned at the top.
    Example: const FAVORITES = ["resume", "polutry_farm"];
    Remove a name from this list to unpin it.
-   (The ☆ stars you tap on the website are saved only in that one
-   browser; the names listed here work everywhere.) */
+   TIP: you don't need to type this by hand. Use the "Make Changes"
+   button on the website: it writes this whole file for you. */
 const FAVORITES = ["resume", "polutry_farm"];
 
 /* ---------- PROJECTS ----------
@@ -20,7 +23,8 @@ const FAVORITES = ["resume", "polutry_farm"];
      name  = title shown on the card
      desc  = short description
      repo  = exact GitHub repo name
-     live  = website link ("" if it has no website)
+     live  = website link. "" = automatic (GITHUB_PAGES + repo name),
+             "none" = no website button, or paste a full link
      lang  = HTML / JavaScript / Python ... (or "")
    Keep the comma at the end of every line except the last one. */
 const projects = [
@@ -33,7 +37,7 @@ const projects = [
  {icon:"🧪",name:"simple-gate-tests",desc:"Simple GATE practice tests.",repo:"simple-gate-tests",live:"",lang:"HTML"},
  {icon:"🎯",name:"gate-mocktests",desc:"GATE mock tests.",repo:"gate-mocktests",live:"",lang:"JavaScript"},
  {icon:"🎓",name:"GATE",desc:"GATE preparation project.",repo:"GATE",live:"",lang:"JavaScript"},
- {icon:"🔒",name:"test-series",desc:"Test series (private repository).",repo:"test-series",live:"",lang:"",priv:true},
+ {icon:"🔒",name:"test-series",desc:"Test series (private repository).",repo:"test-series",live:"none",lang:"",priv:true},
  {icon:"💳",name:"MULTI-USERS--EVENTPAY",desc:"Multi-user event payments system.",repo:"MULTI-USERS--EVENTPAY",live:"",lang:"HTML"},
  {icon:"🌟",name:"sairaj",desc:"Sairaj web project.",repo:"sairaj",live:"",lang:"HTML"},
  {icon:"🚜",name:"Farm Equipment Rental Management System",desc:"Manage farm equipment rentals.",repo:"-Farm-Equipment-Rental-Management-System-",live:"",lang:"JavaScript"},
@@ -44,6 +48,6 @@ const projects = [
  {icon:"🎀",name:"Raksha-bhandan",desc:"Wish you happy Rakhi!",repo:"Raksha-bhandan-",live:"",lang:"CSS"},
  {icon:"🎂",name:"happy-birthday",desc:"Birthday wishes page.",repo:"happy-birthday",live:"",lang:"CSS"},
  {icon:"📄",name:"resume",desc:"My resume as a web page.",repo:"resume",live:"https://likhithlikki.github.io/resume/",lang:"HTML"},
- {icon:"🐍",name:"django",desc:"My PyAutoGUI work in web pages.",repo:"django",live:"",lang:"Python"},
+ {icon:"🐍",name:"django",desc:"My PyAutoGUI work in web pages.",repo:"django",live:"https://likhithlikki.github.io/django/",lang:"Python"},
  {icon:"🗄️",name:"database",desc:"My database work in web pages.",repo:"database",live:"",lang:"HTML"}
 ];
