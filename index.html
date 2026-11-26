@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Likhith’s Projects Hub</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f5f6fb;--card:#fff;--text:#1b1d2a;--muted:#6a6f85;--border:#e3e5f0;--accent:#6c5ce7;--accent2:#00b4d8;--gold:#f5a623;--shadow:0 6px 24px rgba(40,40,90,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1117;--card:#181b25;--text:#eef0f8;--muted:#9aa0b8;--border:#262a38;--shadow:0 6px 24px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f1117;--card:#181b25;--text:#eef0f8;--muted:#9aa0b8;--border:#262a38;--shadow:0 6px 24px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+header{text-align:center;padding:48px 20px 16px}
+header h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,2.8rem);background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{margin:0;color:var(--muted)}
+.tools{display:flex;flex-direction:column;align-items:center;gap:14px;padding:12px 20px 26px}
+.tools input{width:100%;max-width:440px;padding:12px 18px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1rem;outline:none}
+.tools input:focus{border-color:var(--accent)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.9rem}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.count{color:var(--muted);font-size:.85rem}
+.grid{max-width:1150px;margin:0 auto;padding:0 20px 60px;display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.card.pinned{border-color:var(--gold)}
+.icon{font-size:2rem}
+.card h2{margin:0;font-size:1.1rem;word-break:break-word;padding-right:36px}
+.card p{margin:0;color:var(--muted);flex:1;font-size:.92rem}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.72rem;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.tag.live{color:#1a9e5c;border-color:#1a9e5c}
+.tag.priv{color:#d63d3d;border-color:#d63d3d}
+.pin{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1}
+.pin.on{color:var(--gold);border-color:var(--gold)}
+.btns{display:flex;gap:8px}
+.btn{flex:1;text-align:center;text-decoration:none;color:#fff;font-weight:600;padding:11px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.btn.alt{flex:0 0 auto;background:var(--bg);color:var(--text);border:1px solid var(--border)}
+.btn:hover{filter:brightness(1.1)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><h1>My Projects</h1><p>All my websites and repositories in one place. Tap ☆ to pin your favorites.</p></header>
+<div class="tools">
+  <input id="q" type="search" placeholder="Search projects…">
+  <div class="chips">
+    <button class="chip on" data-f="all">All</button>
+    <button class="chip" data-f="fav">★ Favorites</button>
+    <button class="chip" data-f="live">🌐 Live sites</button>
+  </div>
+  <div class="count" id="count"></div>
+</div>
+<main class="grid" id="grid"></main>
+
+<script src="projects.js"></script>
+<script>
+
+
+let pins=[],filter="all";
+try{pins=JSON.parse(localStorage.getItem("pins")||"[]")}catch(e){}
+const grid=document.getElementById("grid"),q=document.getElementById("q"),count=document.getElementById("count");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function isFav(r){return FAVORITES.includes(r)||pins.includes(r)}
+function savePins(){try{localStorage.setItem("pins",JSON.stringify(pins))}catch(e){}}
+function toggle(repo){pins=pins.includes(repo)?pins.filter(r=>r!==repo):[...pins,repo];savePins();render()}
+
+function render(){
+  const t=q.value.toLowerCase().trim();
+  let list=projects.filter(p=>(p.name+" "+p.desc+" "+p.lang).toLowerCase().includes(t));
+  if(filter==="fav")list=list.filter(p=>isFav(p.repo));
+  if(filter==="live")list=list.filter(p=>p.live);
+  list=[...list.filter(p=>isFav(p.repo)),...list.filter(p=>!isFav(p.repo))];
+  count.textContent=list.length+" project"+(list.length===1?"":"s");
+  if(!list.length){grid.innerHTML='<p class="empty">'+(filter==="fav"?"No favorites yet. Tap ☆ on any card to pin it.":"No projects found.")+'</p>';return}
+  grid.innerHTML=list.map(p=>{
+    const on=isFav(p.repo),gh=GITHUB_USER+p.repo;
+    return `<article class="card ${on?"pinned":""}">
+      <button class="pin ${on?"on":""}" data-r="${esc(p.repo)}" title="${FAVORITES.includes(p.repo)?"Pinned in projects.js":on?"Unpin":"Pin as favorite"}">${on?"★":"☆"}</button>
+      <div class="icon">${p.icon}</div>
+      <h2>${esc(p.name)}</h2>
+      <p>${esc(p.desc)}</p>
+      <div class="tags">${p.lang?`<span class="tag">${esc(p.lang)}</span>`:""}${p.live?'<span class="tag live">● Live</span>':""}${p.priv?'<span class="tag priv">Private</span>':""}</div>
+      <div class="btns">${p.live
+        ?`<a class="btn" href="${esc(p.live)}" target="_blank" rel="noopener noreferrer">Click here to open →</a><a class="btn alt" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">GitHub</a>`
+        :`<a class="btn" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">View on GitHub →</a>`}</div>
+    </article>`}).join("");
+}
+grid.addEventListener("click",e=>{const b=e.target.closest(".pin");if(b&&!FAVORITES.includes(b.dataset.r))toggle(b.dataset.r)});
+q.addEventListener("input",render);
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");filter=c.dataset.f;render()}));
+render();
+</script>
+</body>
+</html>
