@@ -6,7 +6,7 @@
 <title>Likhith’s Projects Hub</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---bg:#f5f6fb;--card:#fff;--text:#1b1d2a;--muted:#6a6f85;--border:#e3e5f0;--accent:#6c5ce7;--accent2:#00b4d8;--gold:#f5a623;--shadow:0 6px 24px rgba(40,40,90,.08)}
+--bg:#f5f6fb;--card:#fff;--text:#1b1d2a;--muted:#6a6f85;--border:#e3e5f0;--accent:#6c5ce7;--accent2:#00b4d8;--gold:#f5a623;--ok:#1a9e5c;--bad:#d63d3d;--shadow:0 6px 24px rgba(40,40,90,.08)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f1117;--card:#181b25;--text:#eef0f8;--muted:#9aa0b8;--border:#262a38;--shadow:0 6px 24px rgba(0,0,0,.4)}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#0f1117;--card:#181b25;--text:#eef0f8;--muted:#9aa0b8;--border:#262a38;--shadow:0 6px 24px rgba(0,0,0,.4)}
 *{box-sizing:border-box}
@@ -16,13 +16,15 @@ header{text-align:center;padding:48px 20px 16px}
 header h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,2.8rem);background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
 header p{margin:0;color:var(--muted)}
 .tools{display:flex;flex-direction:column;align-items:center;gap:14px;padding:12px 20px 26px}
+input,textarea,select{font-family:inherit}
 .tools input{width:100%;max-width:440px;padding:12px 18px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1rem;outline:none}
-.tools input:focus{border-color:var(--accent)}
+.tools input:focus,.field input:focus{border-color:var(--accent)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.chip{border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.9rem}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);padding:8px 15px;border-radius:999px;cursor:pointer;font-size:.9rem}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip.edit{border-color:var(--accent);color:var(--accent);font-weight:600}
 .count{color:var(--muted);font-size:.85rem}
-.grid{max-width:1150px;margin:0 auto;padding:0 20px 60px;display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.grid{max-width:1150px;margin:0 auto;padding:0 20px;display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
 .card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:transform .2s,border-color .2s}
 .card:hover{transform:translateY(-4px);border-color:var(--accent)}
 .card.pinned{border-color:var(--gold)}
@@ -31,15 +33,43 @@ header p{margin:0;color:var(--muted)}
 .card p{margin:0;color:var(--muted);flex:1;font-size:.92rem}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:.72rem;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
-.tag.live{color:#1a9e5c;border-color:#1a9e5c}
-.tag.priv{color:#d63d3d;border-color:#d63d3d}
+.tag.priv{color:var(--bad);border-color:var(--bad)}
 .pin{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1}
 .pin.on{color:var(--gold);border-color:var(--gold)}
 .btns{display:flex;gap:8px}
-.btn{flex:1;text-align:center;text-decoration:none;color:#fff;font-weight:600;padding:11px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.btn.alt{flex:0 0 auto;background:var(--bg);color:var(--text);border:1px solid var(--border)}
+.btn{flex:1;text-align:center;text-decoration:none;color:#fff;font-weight:600;padding:11px 12px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));border:0;cursor:pointer;font-size:.95rem}
+.btn.alt{background:var(--bg);color:var(--text);border:1px solid var(--border)}
 .btn:hover{filter:brightness(1.1)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted)}
+
+/* ---------- Make Changes section ---------- */
+#manage{max-width:860px;margin:110px auto 70px;padding:0 20px}
+#manage h2.title{text-align:center;font-size:1.8rem;margin:0 0 6px}
+#manage .sub{text-align:center;color:var(--muted);margin:0 0 28px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:var(--shadow);margin-bottom:22px}
+.panel h3{margin:0 0 4px;font-size:1.1rem;display:flex;align-items:center;gap:10px}
+.step{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-size:.9rem}
+.panel .hint{margin:0 0 16px;color:var(--muted);font-size:.9rem}
+.fields{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.field label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:4px}
+.field input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.95rem;outline:none}
+.field.wide{grid-column:1/-1}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.row label.chk{display:flex;gap:6px;align-items:center;font-size:.9rem;cursor:pointer}
+.msg{font-size:.88rem;min-height:1.3em}
+.msg.ok{color:var(--ok)}.msg.err{color:var(--bad)}
+.list{max-height:330px;overflow-y:auto;border:1px solid var(--border);border-radius:12px}
+.item{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border)}
+.item:last-child{border-bottom:0}
+.item label{flex:1;display:flex;gap:10px;align-items:center;cursor:pointer;min-width:0}
+.item span.n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item input{accent-color:var(--gold);width:18px;height:18px}
+.del{border:1px solid var(--border);background:var(--bg);color:var(--bad);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+.status{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.82rem;border:1px solid var(--border);color:var(--muted)}
+.status.dirty{color:var(--gold);border-color:var(--gold)}
+textarea#code{width:100%;height:280px;padding:14px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:.8rem/1.5 ui-monospace,Menlo,Consolas,monospace;resize:vertical}
+ol.how{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:.9rem}
+.sp{flex:1}
 </style>
 </head>
 <body>
@@ -49,51 +79,158 @@ header p{margin:0;color:var(--muted)}
   <div class="chips">
     <button class="chip on" data-f="all">All</button>
     <button class="chip" data-f="fav">★ Favorites</button>
-    <button class="chip" data-f="live">🌐 Live sites</button>
+    <button class="chip edit" id="goManage">✏️ Make Changes</button>
   </div>
   <div class="count" id="count"></div>
 </div>
 <main class="grid" id="grid"></main>
 
+<section id="manage">
+  <h2 class="title">✏️ Make Changes</h2>
+  <p class="sub">Add projects, choose favorites or remove cards here. You will get <b>one code</b> to copy at the end.</p>
+
+  <div class="panel">
+    <h3><span class="step">1</span> Add a new project</h3>
+    <p class="hint">Fill the boxes and press the button. The card appears on the page right away.</p>
+    <div class="fields">
+      <div class="field"><label>Name *</label><input id="fName" placeholder="My New Site"></div>
+      <div class="field"><label>GitHub repo name *</label><input id="fRepo" placeholder="exact repo name"></div>
+      <div class="field wide"><label>Short description *</label><input id="fDesc" placeholder="What does it do?"></div>
+      <div class="field"><label>Icon (emoji)</label><input id="fIcon" placeholder="📦" maxlength="4"></div>
+      <div class="field"><label>Language</label><input id="fLang" placeholder="HTML, JavaScript…"></div>
+      <div class="field wide"><label>Website link (leave empty = automatic from repo name)</label><input id="fLive" placeholder="https://likhithlikki.github.io/repo-name/"></div>
+    </div>
+    <div class="row">
+      <label class="chk"><input type="checkbox" id="fNone"> This project has no website</label>
+      <label class="chk"><input type="checkbox" id="fFav"> ★ Make it a favorite</label>
+      <span class="sp"></span>
+      <button class="btn" style="flex:0 0 auto" id="addBtn">＋ Add project</button>
+    </div>
+    <div class="msg" id="addMsg"></div>
+  </div>
+
+  <div class="panel">
+    <h3><span class="step">2</span> Choose favorites or remove</h3>
+    <p class="hint">Tick ★ to pin a project at the top. Press Remove to delete a card.</p>
+    <div class="list" id="manageList"></div>
+  </div>
+
+  <div class="panel">
+    <h3><span class="step">3</span> Copy your code</h3>
+    <p class="hint">Every change above is already inside this one code.</p>
+    <div class="row" style="margin:0 0 12px">
+      <span class="status" id="status"></span><span class="sp"></span>
+      <button class="chip" id="resetBtn">↺ Undo all changes</button>
+      <button class="btn" style="flex:0 0 auto" id="copyBtn">📋 Copy code</button>
+      <a class="btn" style="flex:0 0 auto" id="editRepoBtn" target="_blank" rel="noopener noreferrer" href="#">🚀 Open my repo &amp; paste</a>
+    </div>
+    <textarea id="code" readonly spellcheck="false"></textarea>
+    <div class="msg" id="copyMsg"></div>
+    <ol class="how">
+      <li>Press <b>Copy code</b>.</li>
+      <li>Press <b>Open my repo &amp; paste</b>. It opens <b>projects.js</b> in the editor of your <b>all</b> repo.</li>
+      <li>Select everything (Ctrl+A), paste the new code (Ctrl+V), then press <b>Commit changes</b>.</li>
+      <li>Wait about a minute and refresh. Your changes are now on every device.</li>
+    </ol>
+  </div>
+</section>
+
 <script src="projects.js"></script>
 <script>
+const base=JSON.stringify([FAVORITES,projects]);
+let state=null,filter="all";
+try{const d=JSON.parse(localStorage.getItem("hubDraft")||"null");if(d&&d.base===base)state={favs:d.favs,projects:d.projects}}catch(e){}
+if(!state)state={favs:[...FAVORITES],projects:projects.map(p=>({...p}))};
 
-
-let pins=[],filter="all";
-try{pins=JSON.parse(localStorage.getItem("pins")||"[]")}catch(e){}
-const grid=document.getElementById("grid"),q=document.getElementById("q"),count=document.getElementById("count");
+const HUB_REPO="all",HUB_BRANCH="main",HUB_FILE="projects.js"; // your hub repo
+const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const isFav=r=>state.favs.includes(r);
+const siteUrl=p=>p.live==="none"?"":(p.live||GITHUB_PAGES+p.repo+"/");
 
-function isFav(r){return FAVORITES.includes(r)||pins.includes(r)}
-function savePins(){try{localStorage.setItem("pins",JSON.stringify(pins))}catch(e){}}
-function toggle(repo){pins=pins.includes(repo)?pins.filter(r=>r!==repo):[...pins,repo];savePins();render()}
+function update(){
+  try{localStorage.setItem("hubDraft",JSON.stringify({base,favs:state.favs,projects:state.projects}))}catch(e){}
+  renderCards();renderManage();
+}
+function toggleFav(r){state.favs=isFav(r)?state.favs.filter(x=>x!==r):[...state.favs,r];update()}
 
-function render(){
-  const t=q.value.toLowerCase().trim();
-  let list=projects.filter(p=>(p.name+" "+p.desc+" "+p.lang).toLowerCase().includes(t));
+function renderCards(){
+  const t=$("q").value.toLowerCase().trim();
+  let list=state.projects.filter(p=>(p.name+" "+p.desc+" "+p.lang).toLowerCase().includes(t));
   if(filter==="fav")list=list.filter(p=>isFav(p.repo));
-  if(filter==="live")list=list.filter(p=>p.live);
   list=[...list.filter(p=>isFav(p.repo)),...list.filter(p=>!isFav(p.repo))];
-  count.textContent=list.length+" project"+(list.length===1?"":"s");
-  if(!list.length){grid.innerHTML='<p class="empty">'+(filter==="fav"?"No favorites yet. Tap ☆ on any card to pin it.":"No projects found.")+'</p>';return}
-  grid.innerHTML=list.map(p=>{
-    const on=isFav(p.repo),gh=GITHUB_USER+p.repo;
+  $("count").textContent=list.length+" project"+(list.length===1?"":"s");
+  if(!list.length){$("grid").innerHTML='<p class="empty">'+(filter==="fav"?"No favorites yet. Tap ☆ on any card to pin it.":"No projects found.")+'</p>';return}
+  $("grid").innerHTML=list.map(p=>{
+    const on=isFav(p.repo),gh=GITHUB_USER+p.repo,site=siteUrl(p);
     return `<article class="card ${on?"pinned":""}">
-      <button class="pin ${on?"on":""}" data-r="${esc(p.repo)}" title="${FAVORITES.includes(p.repo)?"Pinned in projects.js":on?"Unpin":"Pin as favorite"}">${on?"★":"☆"}</button>
-      <div class="icon">${p.icon}</div>
+      <button class="pin ${on?"on":""}" data-r="${esc(p.repo)}" title="${on?"Unpin":"Pin as favorite"}">${on?"★":"☆"}</button>
+      <div class="icon">${esc(p.icon||"📦")}</div>
       <h2>${esc(p.name)}</h2>
       <p>${esc(p.desc)}</p>
-      <div class="tags">${p.lang?`<span class="tag">${esc(p.lang)}</span>`:""}${p.live?'<span class="tag live">● Live</span>':""}${p.priv?'<span class="tag priv">Private</span>':""}</div>
-      <div class="btns">${p.live
-        ?`<a class="btn" href="${esc(p.live)}" target="_blank" rel="noopener noreferrer">Click here to open →</a><a class="btn alt" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">GitHub</a>`
-        :`<a class="btn" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">View on GitHub →</a>`}</div>
+      <div class="tags">${p.lang?`<span class="tag">${esc(p.lang)}</span>`:""}${p.priv?'<span class="tag priv">Private</span>':""}</div>
+      <div class="btns">${site?`<a class="btn" href="${esc(site)}" target="_blank" rel="noopener noreferrer">🌐 View Website</a>`:""}<a class="btn alt" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">GitHub Repo</a></div>
     </article>`}).join("");
 }
-grid.addEventListener("click",e=>{const b=e.target.closest(".pin");if(b&&!FAVORITES.includes(b.dataset.r))toggle(b.dataset.r)});
-q.addEventListener("input",render);
-document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
-  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");filter=c.dataset.f;render()}));
-render();
+
+function genCode(){
+  const q=s=>JSON.stringify(s);
+  const lines=state.projects.map(p=>` {icon:${q(p.icon||"📦")},name:${q(p.name)},desc:${q(p.desc)},repo:${q(p.repo)},live:${q(p.live||"")},lang:${q(p.lang||"")}${p.priv?",priv:true":""}}`);
+  return `/* projects.js - made by the "Make Changes" section.
+   live: "" = automatic website link, "none" = no website button, or a full link */
+
+const GITHUB_USER = ${q(GITHUB_USER)};
+const GITHUB_PAGES = ${q(GITHUB_PAGES)};
+
+// Favorites (repo names, pinned at the top on every device)
+const FAVORITES = ${JSON.stringify(state.favs)};
+
+const projects = [
+${lines.join(",\n")}
+];
+`;
+}
+
+function renderManage(){
+  $("manageList").innerHTML=state.projects.map(p=>`<div class="item">
+    <label><input type="checkbox" data-r="${esc(p.repo)}" ${isFav(p.repo)?"checked":""}><span>${esc(p.icon||"📦")}</span><span class="n">${esc(p.name)}</span></label>
+    <button class="del" data-del="${esc(p.repo)}">Remove</button></div>`).join("")||'<div class="item">No projects.</div>';
+  $("code").value=genCode();
+  const dirty=JSON.stringify([state.favs,state.projects])!==base;
+  $("status").textContent=dirty?"● You have changes. Copy the code below.":"No changes yet";
+  $("status").className="status"+(dirty?" dirty":"");
+}
+
+function say(id,text,cls){$(id).textContent=text;$(id).className="msg "+(cls||"")}
+
+$("addBtn").addEventListener("click",()=>{
+  const name=$("fName").value.trim(),repo=$("fRepo").value.trim(),desc=$("fDesc").value.trim();
+  if(!name||!repo||!desc)return say("addMsg","Please fill Name, GitHub repo name and Description.","err");
+  if(state.projects.some(p=>p.repo===repo))return say("addMsg","A project with this repo name already exists.","err");
+  const live=$("fNone").checked?"none":$("fLive").value.trim();
+  state.projects.unshift({icon:$("fIcon").value.trim()||"📦",name,desc,repo,live,lang:$("fLang").value.trim()});
+  if($("fFav").checked)state.favs.push(repo);
+  ["fName","fRepo","fDesc","fIcon","fLang","fLive"].forEach(i=>$(i).value="");
+  $("fNone").checked=false;$("fFav").checked=false;
+  update();say("addMsg","✔ Added! See it at the top of the page. Now copy your code in step 3.","ok");
+});
+$("manageList").addEventListener("change",e=>{if(e.target.dataset.r)toggleFav(e.target.dataset.r)});
+$("manageList").addEventListener("click",e=>{
+  const r=e.target.dataset.del;if(!r)return;
+  state.projects=state.projects.filter(p=>p.repo!==r);state.favs=state.favs.filter(x=>x!==r);update();
+});
+$("grid").addEventListener("click",e=>{const b=e.target.closest(".pin");if(b)toggleFav(b.dataset.r)});
+$("resetBtn").addEventListener("click",()=>{
+  state={favs:[...FAVORITES],projects:projects.map(p=>({...p}))};update();say("copyMsg","Changes undone.","ok")});
+$("copyBtn").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText($("code").value)}catch(e){$("code").select();document.execCommand("copy")}
+  say("copyMsg","✔ Copied! Now paste it into projects.js on GitHub.","ok")});
+$("q").addEventListener("input",renderCards);
+$("goManage").addEventListener("click",()=>$("manage").scrollIntoView({behavior:"smooth"}));
+document.querySelectorAll(".chip[data-f]").forEach(c=>c.addEventListener("click",()=>{
+  document.querySelectorAll(".chip[data-f]").forEach(x=>x.classList.remove("on"));c.classList.add("on");filter=c.dataset.f;renderCards()}));
+$("editRepoBtn").href=GITHUB_USER+HUB_REPO+"/edit/"+HUB_BRANCH+"/"+HUB_FILE;
+update();
 </script>
 </body>
 </html>
