@@ -100,6 +100,35 @@ header h1{font-weight:700}
 .mv.in{color:var(--ok);border-color:var(--ok)}
 .mv.out{color:var(--gold);border-color:var(--gold)}
 .empty-s{padding:18px 14px;color:var(--muted);font-size:.88rem}
+
+/* ---------- bigger text + mobile ---------- */
+html{font-size:17px}
+.chip{font-size:1rem}
+.chip.edit.on{color:#fff}
+.card p{font-size:1rem}
+.card h2{font-size:1.2rem}
+.tag{font-size:.8rem}
+.btns{flex-wrap:wrap}
+.btn{min-width:130px;font-size:1rem}
+.item .n{font-size:1rem}
+.mv,.del{font-size:.85rem}
+.field label{font-size:.85rem}
+.panel .hint{font-size:.95rem}
+.msg,.status{font-size:.92rem}
+ol.how{font-size:.95rem}
+#manage-wrap{margin-top:8px;padding:44px 0 80px}
+@media (max-width:600px){
+  header{padding:36px 16px 10px}
+  .tools{padding:10px 16px 20px}
+  .grid,.sec-head{padding:0 16px}
+  #manage{padding:0 12px}
+  #manage h2.title{font-size:1.5rem}
+  .panel{padding:18px 16px}
+  .cols{grid-template-columns:1fr}
+  .row .btn,.row .chip{flex:1 1 100% !important;text-align:center}
+  .item{padding:9px 10px;gap:8px}
+  textarea#code{height:240px}
+}
 </style>
 </head>
 <body>
@@ -109,14 +138,16 @@ header h1{font-weight:700}
   <div class="chips">
     <button class="chip on" data-f="all">All</button>
     <button class="chip" data-f="fav">★ Favorites</button>
-    <button class="chip edit" id="goManage">✏️ Make Changes</button>
+    <button class="chip edit" data-f="manage">✏️ Make Changes</button>
   </div>
   <div class="count" id="count"></div>
 </div>
-<div class="sec-head"><h2>📁 All Projects</h2></div>
+<div id="cardsView">
+<div class="sec-head"><h2 id="secTitle">📁 All Projects</h2></div>
 <main class="grid" id="grid"></main>
+</div>
 
-<div id="manage-wrap">
+<div id="manage-wrap" hidden>
 <section id="manage">
   <h2 class="title">✏️ Make Changes</h2>
   <p class="sub">Add projects, choose favorites or remove cards here. You will get <b>one code</b> to copy at the end. The live page changes only after you paste that code into <b>projects.js</b>.</p>
@@ -288,11 +319,17 @@ $("copyBtn").addEventListener("click",async()=>{
   try{await navigator.clipboard.writeText($("code").value)}catch(e){$("code").select();document.execCommand("copy")}
   say("copyMsg","✔ Copied! Now paste it into projects.js on GitHub.","ok")});
 $("q").addEventListener("input",renderCards);
-$("goManage").addEventListener("click",()=>$("manage").scrollIntoView({behavior:"smooth"}));
+function setView(){
+  const m=filter==="manage";
+  $("cardsView").hidden=m;$("manage-wrap").hidden=!m;
+  $("q").style.display=m?"none":"";$("count").style.display=m?"none":"";
+  $("secTitle").textContent=filter==="fav"?"★ Favorite Projects":"📁 All Projects";
+  if(!m)renderCards();
+}
 document.querySelectorAll(".chip[data-f]").forEach(c=>c.addEventListener("click",()=>{
-  document.querySelectorAll(".chip[data-f]").forEach(x=>x.classList.remove("on"));c.classList.add("on");filter=c.dataset.f;renderCards()}));
+  document.querySelectorAll(".chip[data-f]").forEach(x=>x.classList.remove("on"));c.classList.add("on");filter=c.dataset.f;setView()}));
 $("editRepoBtn").href=GITHUB_USER+HUB_REPO+"/edit/"+HUB_BRANCH+"/"+HUB_FILE;
-renderCards();update();
+setView();update();
 </script>
 </body>
 </html>
