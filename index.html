@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Likhith’s Projects Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#f5f6fb;--card:#fff;--text:#1b1d2a;--muted:#6a6f85;--border:#e3e5f0;--accent:#6c5ce7;--accent2:#00b4d8;--gold:#f5a623;--ok:#1a9e5c;--bad:#d63d3d;--shadow:0 6px 24px rgba(40,40,90,.08)}
@@ -11,7 +14,9 @@
 :root[data-theme="dark"]{color-scheme:dark;--bg:#0f1117;--card:#181b25;--text:#eef0f8;--muted:#9aa0b8;--border:#262a38;--shadow:0 6px 24px rgba(0,0,0,.4)}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font-family:inherit}
+h1,h2,h3{font-family:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.01em}
 header{text-align:center;padding:48px 20px 16px}
 header h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,2.8rem);background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
 header p{margin:0;color:var(--muted)}
@@ -34,6 +39,7 @@ input,textarea,select{font-family:inherit}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:.72rem;padding:2px 9px;border-radius:999px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
 .tag.priv{color:var(--bad);border-color:var(--bad)}
+span.pin{display:grid;place-items:center;cursor:default}
 .pin{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:1.1rem;cursor:pointer;line-height:1}
 .pin.on{color:var(--gold);border-color:var(--gold)}
 .btns{display:flex;gap:8px}
@@ -43,7 +49,7 @@ input,textarea,select{font-family:inherit}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted)}
 
 /* ---------- Make Changes section ---------- */
-#manage{max-width:860px;margin:110px auto 70px;padding:0 20px}
+#manage{max-width:860px;margin:0 auto;padding:0 20px}
 #manage h2.title{text-align:center;font-size:1.8rem;margin:0 0 6px}
 #manage .sub{text-align:center;color:var(--muted);margin:0 0 28px}
 .panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:var(--shadow);margin-bottom:22px}
@@ -70,10 +76,34 @@ input,textarea,select{font-family:inherit}
 textarea#code{width:100%;height:280px;padding:14px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:.8rem/1.5 ui-monospace,Menlo,Consolas,monospace;resize:vertical}
 ol.how{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:.9rem}
 .sp{flex:1}
+
+/* ---------- clear sections + fonts ---------- */
+header h1{font-weight:700}
+.card h2{font-weight:600}
+.sec-head{max-width:1150px;margin:0 auto 22px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.sec-head h2{margin:0;font-size:1.4rem;font-weight:600}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--border)}
+#manage-wrap{background:var(--card);border-top:1px solid var(--border);margin-top:90px;padding:64px 0 80px}
+#manage h2.title{font-weight:700}
+.panel{background:var(--bg)}
+.panel h3{font-weight:600}
+.field input,textarea#code{background:var(--card)}
+.cols{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.col{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
+.col.fav{border-color:var(--gold)}
+.col-h{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;font-weight:600;border-bottom:1px solid var(--border)}
+.col.fav .col-h{background:rgba(245,166,35,.13);color:var(--gold);border-bottom-color:var(--gold)}
+.badge{font-size:.78rem;padding:1px 10px;border-radius:999px;border:1px solid currentColor}
+.col .list{border:0;border-radius:0;max-height:340px}
+.item .n{flex:1;min-width:0;font-size:.92rem}
+.mv{border:1px solid;background:var(--bg);border-radius:8px;padding:4px 10px;cursor:pointer;font-size:.8rem;font-weight:500;white-space:nowrap}
+.mv.in{color:var(--ok);border-color:var(--ok)}
+.mv.out{color:var(--gold);border-color:var(--gold)}
+.empty-s{padding:18px 14px;color:var(--muted);font-size:.88rem}
 </style>
 </head>
 <body>
-<header><h1>My Projects</h1><p>All my websites and repositories in one place. Tap ☆ to pin your favorites.</p></header>
+<header><h1>My Projects</h1><p>All my websites and repositories in one place.</p></header>
 <div class="tools">
   <input id="q" type="search" placeholder="Search projects…">
   <div class="chips">
@@ -83,15 +113,17 @@ ol.how{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:.9rem}
   </div>
   <div class="count" id="count"></div>
 </div>
+<div class="sec-head"><h2>📁 All Projects</h2></div>
 <main class="grid" id="grid"></main>
 
+<div id="manage-wrap">
 <section id="manage">
   <h2 class="title">✏️ Make Changes</h2>
-  <p class="sub">Add projects, choose favorites or remove cards here. You will get <b>one code</b> to copy at the end.</p>
+  <p class="sub">Add projects, choose favorites or remove cards here. You will get <b>one code</b> to copy at the end. The live page changes only after you paste that code into <b>projects.js</b>.</p>
 
   <div class="panel">
     <h3><span class="step">1</span> Add a new project</h3>
-    <p class="hint">Fill the boxes and press the button. The card appears on the page right away.</p>
+    <p class="hint">Fill the boxes and press the button. It is added to the code in step 3.</p>
     <div class="fields">
       <div class="field"><label>Name *</label><input id="fName" placeholder="My New Site"></div>
       <div class="field"><label>GitHub repo name *</label><input id="fRepo" placeholder="exact repo name"></div>
@@ -110,9 +142,12 @@ ol.how{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:.9rem}
   </div>
 
   <div class="panel">
-    <h3><span class="step">2</span> Choose favorites or remove</h3>
-    <p class="hint">Tick ★ to pin a project at the top. Press Remove to delete a card.</p>
-    <div class="list" id="manageList"></div>
+    <h3><span class="step">2</span> Manage favorites</h3>
+    <p class="hint">Left = your favorites (pinned at the top). Right = the rest. Press <b>Add ★</b> to move a project to favorites, or <b>Unpin</b> to move it back. 🗑 deletes a card.</p>
+    <div class="cols">
+      <div class="col fav"><div class="col-h"><span>★ Favorites</span><span class="badge" id="favCount">0</span></div><div class="list" id="favList"></div></div>
+      <div class="col"><div class="col-h"><span>Not favorites</span><span class="badge" id="otherCount">0</span></div><div class="list" id="otherList"></div></div>
+    </div>
   </div>
 
   <div class="panel">
@@ -134,6 +169,7 @@ ol.how{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:.9rem}
     </ol>
   </div>
 </section>
+</div>
 
 <script src="projects.js"></script>
 <script>
@@ -150,21 +186,22 @@ const siteUrl=p=>p.live==="none"?"":(p.live||GITHUB_PAGES+p.repo+"/");
 
 function update(){
   try{localStorage.setItem("hubDraft",JSON.stringify({base,favs:state.favs,projects:state.projects}))}catch(e){}
-  renderCards();renderManage();
+  renderManage();
 }
 function toggleFav(r){state.favs=isFav(r)?state.favs.filter(x=>x!==r):[...state.favs,r];update()}
 
+const fileFav=r=>FAVORITES.includes(r);
 function renderCards(){
   const t=$("q").value.toLowerCase().trim();
-  let list=state.projects.filter(p=>(p.name+" "+p.desc+" "+p.lang).toLowerCase().includes(t));
-  if(filter==="fav")list=list.filter(p=>isFav(p.repo));
-  list=[...list.filter(p=>isFav(p.repo)),...list.filter(p=>!isFav(p.repo))];
+  let list=projects.filter(p=>(p.name+" "+p.desc+" "+p.lang).toLowerCase().includes(t));
+  if(filter==="fav")list=list.filter(p=>fileFav(p.repo));
+  list=[...list.filter(p=>fileFav(p.repo)),...list.filter(p=>!fileFav(p.repo))];
   $("count").textContent=list.length+" project"+(list.length===1?"":"s");
-  if(!list.length){$("grid").innerHTML='<p class="empty">'+(filter==="fav"?"No favorites yet. Tap ☆ on any card to pin it.":"No projects found.")+'</p>';return}
+  if(!list.length){$("grid").innerHTML='<p class="empty">'+(filter==="fav"?"No favorites yet.":"No projects found.")+'</p>';return}
   $("grid").innerHTML=list.map(p=>{
-    const on=isFav(p.repo),gh=GITHUB_USER+p.repo,site=siteUrl(p);
+    const on=fileFav(p.repo),gh=GITHUB_USER+p.repo,site=siteUrl(p);
     return `<article class="card ${on?"pinned":""}">
-      <button class="pin ${on?"on":""}" data-r="${esc(p.repo)}" title="${on?"Unpin":"Pin as favorite"}">${on?"★":"☆"}</button>
+      ${on?'<span class="pin on" title="Favorite">★</span>':""}
       <div class="icon">${esc(p.icon||"📦")}</div>
       <h2>${esc(p.name)}</h2>
       <p>${esc(p.desc)}</p>
@@ -176,25 +213,49 @@ function renderCards(){
 function genCode(){
   const q=s=>JSON.stringify(s);
   const lines=state.projects.map(p=>` {icon:${q(p.icon||"📦")},name:${q(p.name)},desc:${q(p.desc)},repo:${q(p.repo)},live:${q(p.live||"")},lang:${q(p.lang||"")}${p.priv?",priv:true":""}}`);
-  return `/* projects.js - made by the "Make Changes" section.
-   live: "" = automatic website link, "none" = no website button, or a full link */
+  return `/* =====================================================
+   projects.js  -  THIS IS THE ONLY FILE YOU NEED TO EDIT
+   (this whole file was written by the "Make Changes" section)
+   ===================================================== */
 
+// Your GitHub profile link (don't change unless your username changes)
 const GITHUB_USER = ${q(GITHUB_USER)};
+
+// Your GitHub Pages address (used to build every "View Website" link)
 const GITHUB_PAGES = ${q(GITHUB_PAGES)};
 
-// Favorites (repo names, pinned at the top on every device)
+/* ---------- FAVORITES (always pinned, on every device) ----------
+   Write the repo name of any project you want pinned at the top.
+   Example: const FAVORITES = ["resume", "polutry_farm"];
+   Remove a name from this list to unpin it.
+   TIP: you don't need to type this by hand. Use the "Make Changes"
+   button on the website: it writes this whole file for you. */
 const FAVORITES = ${JSON.stringify(state.favs)};
 
+/* ---------- PROJECTS ----------
+   To add a new project, copy ONE line, paste it at the top of the
+   list, and change the values:
+     icon  = any emoji
+     name  = title shown on the card
+     desc  = short description
+     repo  = exact GitHub repo name
+     live  = website link. "" = automatic (GITHUB_PAGES + repo name),
+             "none" = no website button, or paste a full link
+     lang  = HTML / JavaScript / Python ... (or "")
+   Keep the comma at the end of every line except the last one. */
 const projects = [
 ${lines.join(",\n")}
 ];
 `;
 }
 
+function row(p,fav){return `<div class="item"><span>${esc(p.icon||"📦")}</span><span class="n" title="${esc(p.name)}">${esc(p.name)}</span><button class="mv ${fav?"out":"in"}" data-fav="${esc(p.repo)}">${fav?"☆ Unpin":"Add ★"}</button><button class="del" data-del="${esc(p.repo)}" title="Delete this project card">🗑</button></div>`}
+
 function renderManage(){
-  $("manageList").innerHTML=state.projects.map(p=>`<div class="item">
-    <label><input type="checkbox" data-r="${esc(p.repo)}" ${isFav(p.repo)?"checked":""}><span>${esc(p.icon||"📦")}</span><span class="n">${esc(p.name)}</span></label>
-    <button class="del" data-del="${esc(p.repo)}">Remove</button></div>`).join("")||'<div class="item">No projects.</div>';
+  const f=state.projects.filter(p=>isFav(p.repo)),o=state.projects.filter(p=>!isFav(p.repo));
+  $("favList").innerHTML=f.map(p=>row(p,true)).join("")||'<div class="empty-s">No favorites yet. Press Add ★ on the right.</div>';
+  $("otherList").innerHTML=o.map(p=>row(p,false)).join("")||'<div class="empty-s">Every project is a favorite.</div>';
+  $("favCount").textContent=f.length;$("otherCount").textContent=o.length;
   $("code").value=genCode();
   const dirty=JSON.stringify([state.favs,state.projects])!==base;
   $("status").textContent=dirty?"● You have changes. Copy the code below.":"No changes yet";
@@ -212,14 +273,15 @@ $("addBtn").addEventListener("click",()=>{
   if($("fFav").checked)state.favs.push(repo);
   ["fName","fRepo","fDesc","fIcon","fLang","fLive"].forEach(i=>$(i).value="");
   $("fNone").checked=false;$("fFav").checked=false;
-  update();say("addMsg","✔ Added! See it at the top of the page. Now copy your code in step 3.","ok");
+  update();say("addMsg","✔ Added to your code. The live page is not changed yet. Now copy your code in step 3.","ok");
 });
-$("manageList").addEventListener("change",e=>{if(e.target.dataset.r)toggleFav(e.target.dataset.r)});
-$("manageList").addEventListener("click",e=>{
-  const r=e.target.dataset.del;if(!r)return;
+function manageClick(e){
+  const f=e.target.closest("[data-fav]");if(f)return toggleFav(f.dataset.fav);
+  const d=e.target.closest("[data-del]");if(!d)return;const r=d.dataset.del;
   state.projects=state.projects.filter(p=>p.repo!==r);state.favs=state.favs.filter(x=>x!==r);update();
-});
-$("grid").addEventListener("click",e=>{const b=e.target.closest(".pin");if(b)toggleFav(b.dataset.r)});
+}
+$("favList").addEventListener("click",manageClick);
+$("otherList").addEventListener("click",manageClick);
 $("resetBtn").addEventListener("click",()=>{
   state={favs:[...FAVORITES],projects:projects.map(p=>({...p}))};update();say("copyMsg","Changes undone.","ok")});
 $("copyBtn").addEventListener("click",async()=>{
@@ -230,7 +292,7 @@ $("goManage").addEventListener("click",()=>$("manage").scrollIntoView({behavior:
 document.querySelectorAll(".chip[data-f]").forEach(c=>c.addEventListener("click",()=>{
   document.querySelectorAll(".chip[data-f]").forEach(x=>x.classList.remove("on"));c.classList.add("on");filter=c.dataset.f;renderCards()}));
 $("editRepoBtn").href=GITHUB_USER+HUB_REPO+"/edit/"+HUB_BRANCH+"/"+HUB_FILE;
-update();
+renderCards();update();
 </script>
 </body>
 </html>
