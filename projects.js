@@ -1,5 +1,6 @@
 /* =====================================================
    projects.js  -  THIS IS THE ONLY FILE YOU NEED TO EDIT
+   (this whole file was written by the "Make Changes" section)
    ===================================================== */
 
 // Your GitHub profile link (don't change unless your username changes)
@@ -14,7 +15,7 @@ const GITHUB_PAGES = "https://likhithlikki.github.io/";
    Remove a name from this list to unpin it.
    TIP: you don't need to type this by hand. Use the "Make Changes"
    button on the website: it writes this whole file for you. */
-const FAVORITES = ["resume", "polutry_farm"];
+const FAVORITES = ["GATE","EXAM","phone-activity"];
 
 /* ---------- PROJECTS ----------
    To add a new project, copy ONE line, paste it at the top of the
@@ -28,6 +29,7 @@ const FAVORITES = ["resume", "polutry_farm"];
      lang  = HTML / JavaScript / Python ... (or "")
    Keep the comma at the end of every line except the last one. */
 const projects = [
+ {icon:"😊🤷",name:"my new website",desc:"cdcsdcdcqcddc",repo:"xxxxxxxxxxxxxxxxx",live:"",lang:"yufki8kt78k"},
  {icon:"🐔",name:"polutry_farm",desc:"Poultry farm website.",repo:"polutry_farm",live:"https://likhithlikki.github.io/polutry_farm/",lang:"HTML"},
  {icon:"🔌",name:"gpio_control",desc:"Shell scripts to control GPIO pins.",repo:"gpio_control",live:"",lang:"Shell"},
  {icon:"📱",name:"phone-activity",desc:"Phone activity web app.",repo:"phone-activity",live:"https://likhithlikki.github.io/phone-activity/",lang:"JavaScript"},
