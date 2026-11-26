@@ -129,6 +129,13 @@ ol.how{font-size:.95rem}
   .item{padding:9px 10px;gap:8px}
   textarea#code{height:240px}
 }
+
+/* ---------- bigger titles, smaller one-line buttons ---------- */
+header h1{font-size:clamp(2.6rem,9vw,4.2rem);line-height:1.1;margin-bottom:12px}
+header p{font-size:1.05rem}
+.card h2{font-size:1.4rem;line-height:1.25}
+.card .btns{flex-wrap:nowrap;gap:8px}
+.card .btn{min-width:0;padding:9px 8px;font-size:.88rem;white-space:nowrap;border-radius:10px}
 </style>
 </head>
 <body>
@@ -237,7 +244,7 @@ function renderCards(){
       <h2>${esc(p.name)}</h2>
       <p>${esc(p.desc)}</p>
       <div class="tags">${p.lang?`<span class="tag">${esc(p.lang)}</span>`:""}${p.priv?'<span class="tag priv">Private</span>':""}</div>
-      <div class="btns">${site?`<a class="btn" href="${esc(site)}" target="_blank" rel="noopener noreferrer">🌐 View Website</a>`:""}<a class="btn alt" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">GitHub Repo</a></div>
+      <div class="btns">${site?`<a class="btn" href="${esc(site)}" target="_blank" rel="noopener noreferrer">🌐 Website</a>`:""}<a class="btn alt" href="${esc(gh)}" target="_blank" rel="noopener noreferrer">📂 Repository</a></div>
     </article>`}).join("");
 }
 
