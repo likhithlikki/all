@@ -15,7 +15,7 @@ const GITHUB_PAGES = "https://likhithlikki.github.io/";
    Remove a name from this list to unpin it.
    TIP: you don't need to type this by hand. Use the "Make Changes"
    button on the website: it writes this whole file for you. */
-const FAVORITES = ["EXAM","test-series","-Farm-Equipment-Rental-Management-System-","College-Academic-Event-Management-System","Event-Payments-2.0","happy-birthday"];
+const FAVORITES = ["EXAM","-Farm-Equipment-Rental-Management-System-","College-Academic-Event-Management-System","Event-Payments-2.0","happy-birthday","simple-gate-tests"];
 
 /* ---------- PROJECTS ----------
    To add a new project, copy ONE line, paste it at the top of the
@@ -38,7 +38,6 @@ const projects = [
  {icon:"🧪",name:"simple-gate-tests",desc:"Simple GATE practice tests.",repo:"simple-gate-tests",live:"",lang:"HTML"},
  {icon:"🎯",name:"gate-mocktests",desc:"GATE mock tests.",repo:"gate-mocktests",live:"",lang:"JavaScript"},
  {icon:"🎓",name:"GATE",desc:"GATE preparation project.",repo:"GATE",live:"",lang:"JavaScript"},
- {icon:"🔒",name:"test-series",desc:"Test series (private repository).",repo:"test-series",live:"none",lang:"",priv:true},
  {icon:"💳",name:"MULTI-USERS--EVENTPAY",desc:"Multi-user event payments system.",repo:"MULTI-USERS--EVENTPAY",live:"",lang:"HTML"},
  {icon:"🌟",name:"sairaj",desc:"Sairaj web project.",repo:"sairaj",live:"",lang:"HTML"},
  {icon:"🚜",name:"Farm Equipment Rental Management System",desc:"Manage farm equipment rentals.",repo:"-Farm-Equipment-Rental-Management-System-",live:"",lang:"JavaScript"},
