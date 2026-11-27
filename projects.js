@@ -15,7 +15,7 @@ const GITHUB_PAGES = "https://likhithlikki.github.io/";
    Remove a name from this list to unpin it.
    TIP: you don't need to type this by hand. Use the "Make Changes"
    button on the website: it writes this whole file for you. */
-const FAVORITES = ["EXAM","-Farm-Equipment-Rental-Management-System-","College-Academic-Event-Management-System","happy-birthday","simple-gate-tests","MULTI-USERS--EVENTPAY","phone-activity"];
+const FAVORITES = ["EXAM","-Farm-Equipment-Rental-Management-System-","College-Academic-Event-Management-System","happy-birthday","simple-gate-tests","MULTI-USERS--EVENTPAY","phone-activity","resume"];
 
 /* ---------- PROJECTS ----------
    To add a new project, copy ONE line, paste it at the top of the
