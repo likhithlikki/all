@@ -15,7 +15,7 @@ const GITHUB_PAGES = "https://likhithlikki.github.io/";
    Remove a name from this list to unpin it.
    TIP: you don't need to type this by hand. Use the "Make Changes"
    button on the website: it writes this whole file for you. */
-const FAVORITES = ["EXAM","-Farm-Equipment-Rental-Management-System-","College-Academic-Event-Management-System","simple-gate-tests","MULTI-USERS--EVENTPAY","phone-activity","resume","sairaj"];
+const FAVORITES = ["EXAM","-Farm-Equipment-Rental-Management-System-","College-Academic-Event-Management-System","simple-gate-tests","MULTI-USERS--EVENTPAY","phone-activity","resume","sairaj","final-track"];
 
 /* ---------- PROJECTS ----------
    To add a new project, copy ONE line, paste it at the top of the
@@ -29,6 +29,7 @@ const FAVORITES = ["EXAM","-Farm-Equipment-Rental-Management-System-","College-A
      lang  = HTML / JavaScript / Python ... (or "")
    Keep the comma at the end of every line except the last one. */
 const projects = [
+ {icon:"👌",name:"final-track",desc:"included steps , health and more features",repo:"final-track",live:"",lang:"firebase"},
  {icon:"🐔",name:"polutry_farm",desc:"Poultry farm website.",repo:"polutry_farm",live:"https://likhithlikki.github.io/polutry_farm/",lang:"HTML"},
  {icon:"🔌",name:"gpio_control",desc:"Shell scripts to control GPIO pins.",repo:"gpio_control",live:"",lang:"Shell"},
  {icon:"📱",name:"phone-activity",desc:"Phone activity web app.",repo:"phone-activity",live:"https://likhithlikki.github.io/phone-activity/",lang:"JavaScript"},
